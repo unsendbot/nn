@@ -1,5 +1,5 @@
 const config = {
-    name: "تدريس",
+    name: "تعلم2",
     aliases: ["teach"],
     description: "Teach Nino",
     usage: "[text] => [reply]",

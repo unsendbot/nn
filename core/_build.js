@@ -12,9 +12,11 @@ import replitDB from "@replit/database";
 import { execSync } from "child_process";
 import { initDatabase, updateJSON, updateMONGO, _Threads, _Users } from "./handlers/database.js";
 import crypto from "crypto";
+import startHourlyDuaSender from "./var/modules/hourlyDuaSender.js";
 
 const { isGlitch, isReplit } = environments;
-
+global.client = global.client || {};
+global.client.handleReply = [];
 process.stdout.write(String.fromCharCode(27) + "]0;" + "Xavia" + String.fromCharCode(7));
 
 process.on("unhandledRejection", (reason, p) => {
@@ -70,6 +72,7 @@ function booting(logger) {
             .then(async (api) => {
                 global.api = api;
                 global.botID = api.getCurrentUserID();
+                await startHourlyDuaSender(api);
                 logger.custom(getLang("build.booting.logged", { botID }), "LOGIN");
 
                 refreshState();

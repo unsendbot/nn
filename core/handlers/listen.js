@@ -3,7 +3,6 @@ import handleEvents from './events.js';
 import { handleDatabase } from './database.js';
 import logger from '../var/modules/logger.js';
 
-
 export default async function handleListen(listenerID) {
     const { handleCommand, handleReaction, handleMessage, handleReply, handleUnsend, handleEvent } = await handleEvents();
     const eventlog_excluded = ["typ", "presence", "read_receipt"];
